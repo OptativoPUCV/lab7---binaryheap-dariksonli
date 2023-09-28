@@ -33,3 +33,9 @@ Thu 28 Sep 2023 04:00:40 AM UTC:
  tests:  2|2
 total_score: 20/70
 3a429f1
+Thu 28 Sep 2023 06:53:02 PM UTC: 
+ heap.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+ tests:  2|2
+total_score: 20/70
+b4f1078
