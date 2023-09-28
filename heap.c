@@ -33,13 +33,17 @@ void heap_push(Heap* pq, void* data, int priority)
     pq->heapArray->priority = priority;
     return;
   }
+  
   if(pq->capac == pq->size){
     int capacidad = (pq->capac * 2)+1;
     pq->heapArray = (heapElem *) realloc(pq->heapArray , sizeof(int ) * capacidad);
     if(pq->heapArray == NULL) return;
     pq->capac = capacidad;
   }
-  
+
+  pq->size++;
+  pq->heapArray->data = data;
+  pq->heapArray->priority = priority;
 }
 
 
