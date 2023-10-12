@@ -45,8 +45,8 @@ void heap_push(Heap* pq, void* data, int priority)
   }
 
   pq->size++;
-  pq->heapArray[indice].data = data;
-  pq->heapArray[indice].priority = priority;
+  pq->heapArray[pq->size].data = data;
+  pq->heapArray[pq->size].priority = priority;
 
   if(pq->heapArray[indice].priority < pq->heapArray[pq->size].priority)//si el nuevo elemento es menor que el padre
   {
