@@ -37,7 +37,6 @@ void heap_push(Heap* pq, void* data, int priority)
     return;
   }
   //si arreglo esta lleno aumentar capacidad
-  
   if(pq->capac == pq->size)
   {
     int capacidad = (pq->capac * 2)+1;
@@ -46,6 +45,7 @@ void heap_push(Heap* pq, void* data, int priority)
   }
 
   pq->size++;
+  indice++;
   pq->heapArray[indice].data = data;
   pq->heapArray[indice].priority = priority;
 
