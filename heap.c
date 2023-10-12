@@ -28,24 +28,26 @@ void* heap_top(Heap* pq)
 void heap_push(Heap* pq, void* data, int priority)
 {
   int indice = pq->size;
-  
+
+  //si esta vacio insertar altiro
   if(indice == 0){
     pq->heapArray[indice].data = data;
     pq->heapArray[indice].priority = priority;
     pq->size++;
     return;
   }
+  //si arreglo esta lleno aumentar capacidad
   
-  if(pq->capac == pq->size){
+  if(pq->capac == pq->size)
+  {
     int capacidad = (pq->capac * 2)+1;
     pq->heapArray = (heapElem *) realloc(pq->heapArray , sizeof(int ) * capacidad);
     if(pq->heapArray == NULL) return;
-    pq->capac = capacidad;
   }
 
   pq->size++;
-  pq->heapArray[pq->size].data = data;
-  pq->heapArray[pq->size].priority = priority;
+  pq->heapArray[indice].data = data;
+  pq->heapArray[indice].priority = priority;
 
   if(pq->heapArray[indice].priority < pq->heapArray[pq->size].priority)
   {
