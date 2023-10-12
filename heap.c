@@ -49,11 +49,12 @@ void heap_push(Heap* pq, void* data, int priority)
   pq->heapArray[indice].data = data;
   pq->heapArray[indice].priority = priority;
 
-  if(pq->heapArray[indice].priority < pq->heapArray[pq->size].priority)
+  if(pq->heapArray[indice].priority < pq->heapArray[pq->size].priority)//si el nuevo elemento es menor que el padre
   {
-    heapElem aux = pq->heapArray[indice];
-    pq->heapArray[indice] = pq->heapArray[pq->size];
-    pq->heapArray[pq->size] = aux;
+    heapElem aux = pq->heapArray[indice];//se guarda el elemento en aux
+    pq->heapArray[indice] = pq->heapArray[indice];//se guarda el nuevo elemento en el padre
+    pq->heapArray[indice] = aux;//se guarda el aux en el padre
+    indice = (indice-1)/2;//se vuelve a llamar a la funcion con el nuevo indice
     heap_push(pq, data, priority);
     return;
   }
