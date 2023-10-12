@@ -45,8 +45,8 @@ void heap_push(Heap* pq, void* data, int priority)
   }
 
   pq->size++;
-  pq->heapArray[pq->size].data = data;
-  pq->heapArray[pq->size].priority = priority;
+  pq->heapArray[indice].data = data;
+  pq->heapArray[indice].priority = priority;
 
   if(pq->heapArray[indice].priority < pq->heapArray[pq->size].priority)//si el nuevo elemento es menor que el padre
   {
@@ -73,8 +73,41 @@ void heap_push(Heap* pq, void* data, int priority)
 
 void heap_pop(Heap* pq)
 {
-  void * aux = pq->heapArray[pq->size].data;
+  void * aux = pq->heapArray[pq->size].data; //se guarda el ultimo elemento en aux
   pq->heapArray[0].data = aux;
+  pq->heapArray[pq->size].data = NULL;
+  pq->size--;
+  int indice = 0;
+  int hijoIzq = (indice*2)+1;
+  int hijoDer = (indice*2)+2;
+  int aux2;
+  int aux3;
+  
+  while(pq->heapArray[indice].priority < pq->heapArray[hijoIzq].priority || pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority)
+  {
+    if(pq->heapArray[hijoIzq].priority > pq->heapArray[hijoDer].priority)
+    {
+      aux2 = pq->heapArray[hijoIzq].priority;
+      pq->heapArray[hijoIzq].priority = pq->heapArray[indice].priority;
+      pq->heapArray[indice].priority = aux2;
+      indice = hijoIzq;
+      hijoIzq = (indice*2)+1;
+      hijoDer = (indice*2)+2;
+    }
+    else{
+      if(pq->heapArray[hijoIzq].priority < pq->heapArray[hijoDer].priority)
+      {
+        aux3 = pq->heapArray[hijoDer].priority;
+        pq->heapArray[hijoDer].priority = pq->heapArray[indice].priority;
+        pq->heapArray[indice].priority = aux3;
+        indice = hijoDer;
+        hijoIzq = (indice*2)+1;
+        hijoDer = (indice*2)+2;
+      }
+      if(pq->heapArray[hijoIzq].priority > pq->heapArray[hijoDer].priority) break;
+    }
+  }
+    
 
 }
 
