@@ -35,17 +35,17 @@ void heap_push(Heap* pq, void* data, int priority){
   
   int posicion = pq->size - 1;
   int padre = (posicion - 1) / 2;
-  void* temp;
-  int temporalPriority;
+  void * datoTemp;
+  int prioridadTemp;
 
   while(posicion > 0 && pq->heapArray[posicion].priority > pq->heapArray[padre].priority){
-    temp = pq->heapArray[posicion].data;
+    datoTemp = pq->heapArray[posicion].data;
     pq->heapArray[posicion].data = pq->heapArray[padre].data;
-    pq->heapArray[padre].data = temp;
+    pq->heapArray[padre].data = datoTemp;
 
-    temporalPriority = pq->heapArray[posicion].priority;
+    prioridadTemp = pq->heapArray[posicion].priority;
     pq->heapArray[posicion].priority = pq->heapArray[padre].priority;
-    pq->heapArray[padre].priority = temporalPriority;
+    pq->heapArray[padre].priority = prioridadTemp;
 
     posicion = padre;
     padre = (posicion - 1)/2;
