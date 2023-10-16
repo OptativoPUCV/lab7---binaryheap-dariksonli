@@ -23,9 +23,37 @@ void* heap_top(Heap* pq)
   return pq->heapArray->data;
 }
 
+void heap_push(Heap* pq, void* data, int priority){
+  if(pq->size >= pq->capac){
+    pq->heapArray = realloc(pq->heapArray, ((pq->capac * 2) + 1) * sizeof(Heap));
+    pq->capac = (pq->capac * 2) + 1;
+  }
 
+  pq->heapArray[pq->size].data = data;
+  pq->heapArray[pq->size].priority = priority;
+  pq->size++;
+  
+ int posicion = pq->size - 1;
+  int padre = (posicion - 1) / 2;
+  void* temporalData;
+  int temporalPriority;
 
-void heap_push(Heap* pq, void* data, int priority)
+  while(posicion > 0 && pq->heapArray[posicion].priority > pq->heapArray[padre].priority){
+    temporalData = pq->heapArray[posicion].data;
+    pq->heapArray[posicion].data = pq->heapArray[padre].data;
+    pq->heapArray[padre].data = temporalData;
+
+    temporalPriority = pq->heapArray[posicion].priority;
+    pq->heapArray[posicion].priority = pq->heapArray[padre].priority;
+    pq->heapArray[padre].priority = temporalPriority;
+
+    posicion = padre;
+    padre = (posicion - 1) / 2;
+    
+  }
+}
+
+/*void heap_push(Heap* pq, void* data, int priority)
 {
   int indice = pq->size;
 
@@ -58,18 +86,18 @@ void heap_push(Heap* pq, void* data, int priority)
     return;
   }
   
-  /*while(pq->heapArray[indice].priority > pq->heapArray[(indice-1)/2].priority)
+  while(pq->heapArray[indice].priority > pq->heapArray[(indice-1)/2].priority)
   {
     heapElem aux = pq->heapArray[indice];
     pq->heapArray[indice] = pq->heapArray[(indice-1)/2];
     pq->heapArray[(indice-1)/2] = aux;
     indice = (indice-1)/2;
     if(indice == 0) break;
-  }*/
+  }
   
   
 }
-
+*/
 
 void heap_pop(Heap* pq)
 {
@@ -106,8 +134,6 @@ void heap_pop(Heap* pq)
       if(pq->heapArray[hijoIzq].priority > pq->heapArray[hijoDer].priority) break;
     }
   }
-    
-
 }
 
 Heap* createHeap()

@@ -108,3 +108,34 @@ Sun 15 Oct 2023 01:03:05 AM UTC:
  tests:  3|2
 total_score: 25/70
 30bff3f
+Mon 16 Oct 2023 06:13:53 PM UTC: 
+ heap.c | 36 ++++++++++++++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 4 deletions(-)
+In file included from test.c:4:
+heap.c: In function ‘heap_push’:
+heap.c:51:27: error: stray ‘\302’ in program
+   51 |     padre = (posicion - 1) / 2;
+      |                           ^
+heap.c:51:29: error: stray ‘\302’ in program
+   51 |     padre = (posicion - 1) / 2;
+      |                             ^
+heap.c:52:1: error: stray ‘\302’ in program
+   52 |     
+      | ^
+heap.c:52:2: error: stray ‘\302’ in program
+   52 |     
+      |  ^
+heap.c:52:3: error: stray ‘\302’ in program
+   52 |     
+      |   ^
+heap.c:52:4: error: stray ‘\302’ in program
+   52 |     
+      |    ^
+heap.c:53:1: error: stray ‘\302’ in program
+   53 |   }
+      | ^
+heap.c:53:2: error: stray ‘\302’ in program
+   53 |   }
+      |  ^
+Compilation failed
+0f3a1f1
