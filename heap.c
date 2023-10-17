@@ -25,33 +25,34 @@ void* heap_top(Heap* pq)
 
 void heap_push(Heap* pq, void* data, int priority)
 {
+  int indice = pq->size;
   if(pq->size >= pq->capac)
   {
     pq->heapArray = realloc(pq->heapArray, ((pq->capac*2)+1)* sizeof(Heap));
     pq->capac = (pq->capac * 2) + 1;
   }
 
-  pq->heapArray[pq->size].data = data;
-  pq->heapArray[pq->size].priority = priority;
+  pq->heapArray[indice].data = data;
+  pq->heapArray[indice].priority = priority;
   pq->size++;
   
-  int posicion = pq->size - 1;
-  int padre = (posicion - 1) / 2;
+  //int posicion = pq->size - 1;
+  int padre = (indice - 1) / 2;
   void * datoTemp;
   int prioridadTemp;
 
-  while(posicion > 0 && pq->heapArray[posicion].priority > pq->heapArray[padre].priority)
+  while(indice > 0 && pq->heapArray[indice].priority > pq->heapArray[padre].priority)
   {
-    datoTemp = pq->heapArray[posicion].data;
-    pq->heapArray[posicion].data = pq->heapArray[padre].data;
+    datoTemp = pq->heapArray[indice].data;
+    pq->heapArray[indice].data = pq->heapArray[padre].data;
     pq->heapArray[padre].data = datoTemp;
 
-    prioridadTemp = pq->heapArray[posicion].priority;
-    pq->heapArray[posicion].priority = pq->heapArray[padre].priority;
+    prioridadTemp = pq->heapArray[indice].priority;
+    pq->heapArray[indice].priority = pq->heapArray[padre].priority;
     pq->heapArray[padre].priority = prioridadTemp;
 
-    posicion = padre;
-    padre = (posicion - 1)/2;
+    indice = padre;
+    padre = (indice - 1)/2;
   }
 }
 
