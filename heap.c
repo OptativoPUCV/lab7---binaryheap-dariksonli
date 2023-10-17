@@ -69,30 +69,14 @@ void heap_pop(Heap* pq)
   pq->size--;
   
   int indice = 0;
-  int hijoIzq = (indice*2)+1;
-  int hijoDer = (indice*2)+2;
-  //
-  while(pq->heapArray[indice].priority < pq->heapArray[hijoIzq].priority || pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority)
+  //pq->heapArray[indice].priority < pq->heapArray[hijoIzq].priority || pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority
+  while(1)
   {
-    if(pq->heapArray[hijoIzq].priority > pq->heapArray[hijoDer].priority)
-    {
-      int aux2 = pq->heapArray[hijoIzq].priority;
-      pq->heapArray[hijoIzq].priority = pq->heapArray[indice].priority;
-      pq->heapArray[indice].priority = aux2;
-      indice = hijoIzq;
-      hijoIzq = (indice*2)+1;
-      hijoDer = (indice*2)+2;
-    }
-    else{
-      if(pq->heapArray[hijoIzq].priority < pq->heapArray[hijoDer].priority)
-      {
-        int aux3 = pq->heapArray[hijoDer].priority;
-        pq->heapArray[hijoDer].priority = pq->heapArray[indice].priority;
-        pq->heapArray[indice].priority = aux3;
-        indice = hijoDer;
-        hijoIzq = (indice*2)+1;
-        hijoDer = (indice*2)+2;
-      }
+    int hijoIzq = (indice*2)+1;
+    int hijoDer = (indice*2)+2;
+    
+    if(pq->heapArray[hijoIzq].priority > pq->heapArray[indice].priority) indice = hijoIzq;
+    else if(pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority) indice = hijoDer;
       if(pq->heapArray[hijoIzq].priority > pq->heapArray[hijoDer].priority) break;
     }
   }
