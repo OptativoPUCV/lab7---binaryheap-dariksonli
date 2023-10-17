@@ -70,10 +70,12 @@ void heap_pop(Heap* pq)
   
   int indice = 0;
   //
+  int hijoIzq = (indice*2)+1;
+  int hijoDer = (indice*2)+2;
   while(pq->heapArray[indice].priority < pq->heapArray[hijoIzq].priority || pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority)
   {
-    int hijoIzq = (indice*2)+1;
-    int hijoDer = (indice*2)+2;
+     hijoIzq = (indice*2)+1;
+     hijoDer = (indice*2)+2;
     
     if(pq->heapArray[hijoIzq].priority > pq->heapArray[indice].priority) indice = hijoIzq;
     else if(pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority) indice = hijoDer;
