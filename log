@@ -184,3 +184,17 @@ heap.c:83:1: error: expected identifier or ‘(’ before ‘}’ token
       | ^
 Compilation failed
 af2e648
+Tue 17 Oct 2023 01:16:33 AM UTC: 
+ heap.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+In file included from test.c:4:
+heap.c: In function ‘heap_pop’:
+heap.c:73:56: error: ‘hijoIzq’ undeclared (first use in this function)
+   73 |   while(pq->heapArray[indice].priority < pq->heapArray[hijoIzq].priority || pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority)
+      |                                                        ^~~~~~~
+heap.c:73:56: note: each undeclared identifier is reported only once for each function it appears in
+heap.c:73:124: error: ‘hijoDer’ undeclared (first use in this function)
+   73 |   while(pq->heapArray[indice].priority < pq->heapArray[hijoIzq].priority || pq->heapArray[indice].priority < pq->heapArray[hijoDer].priority)
+      |                                                                                                                            ^~~~~~~
+Compilation failed
+00d8061
